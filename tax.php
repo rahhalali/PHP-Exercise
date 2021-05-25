@@ -39,6 +39,29 @@ $social_fee=0.04;
                 }
             }
         }
+        if($_GET["radio"]=="month"){
+            $total=$total;
+            $year=$total*12;
+            $taxx=$taxx;
+            $yearly_sal=$sal*$tax_amount*12;
+            $tex=$sal*$social_fee;
+            $year_so=$sal*$social_fee*12;
+            $fee1=$salary-($tax_amount*$salary);
+            $yearlyfee=$fee1*12;
+
+        }
+        if($_GET["radio"]=="year"){
+            $year=$total;
+            $total=$total/12;
+            $yearly_sal=$sal*$tax_amount;
+            $taxx=$taxx/12;
+            $year_so=$sal*$social_fee;
+            $tex=$sal*$social_fee/12;
+            $yearlyfee=$salary-($tax_amount*$salary);
+            $fee1=($salary-($tax_amount*$salary))/12;
+        }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -101,24 +124,23 @@ $social_fee=0.04;
                 </tr>
                 <tr>
                 <th>Total Salary</th>
-                   <td><?php if($_GET["radio"]=="month") echo "$total"; ?></td> 
-                   <td> <?php $year=$total*12;if($_GET["radio"]=="year")  echo "$year"; ?></td>
+                   <td><?php echo "$total"; ?></td> 
+                   <td> <?php echo "$year"; ?></td>
                 </tr>
                 <tr>
                 <th>Tax amount</th>
-                <td><?php  if($_GET["radio"]=="month") echo"$taxx";?></td> 
-                   <td> <?php $yearly_sal=$sal*$tax_amount*12;
-                 if($_GET["radio"]=="year")  echo "$yearly_sal" ?></td>
+                <td><?php   echo"$taxx";?></td> 
+                   <td> <?php echo "$yearly_sal" ?></td>
                 </tr>
                 <tr>
                 <th> Social security fee </th>
-                <td><?php $tex=$sal*$social_fee; if($_GET["radio"]=="month") echo "$tex"; ?></td> 
-                   <td> <?php $year_so=$sal*$social_fee*12;if($_GET["radio"]=="year")  echo "$year_so"; ?></td>
+                <td><?php  echo "$tex"; ?></td> 
+                   <td> <?php echo "$year_so"; ?></td>
                 </tr>
                 <tr>
                     <th>Salary after tax</th>
-                <td><?php  $fee1=$salary-($tax_amount*$salary); if($_GET["radio"]=="month")  echo "$fee1"; ?></td> 
-                   <td> <?php   $yearlyfee=$fee1*12;if($_GET["radio"]=="year")  echo "$yearlyfee"; ?></td>
+                <td><?php  echo "$fee1"; ?></td> 
+                   <td> <?php echo "$yearlyfee"; ?></td>
                 </tr>
             </table>
         </fieldset>
